@@ -1,7 +1,8 @@
 <h1>New Post</h1>
 
 <%= simple_form_for @post do |f| %>
-  <%= f.input :title %>
+  <%= f.input :body %>
+  <%= f.association :user, collection: User.all.order(name: :asc) %>
 
   <%= f.button :submit, 'Create Post' %>
   <%= link_to 'Cancel', posts_path %>
