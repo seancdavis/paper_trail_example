@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# For Tailwind example:
+# https://github.com/tarellel/simple_form-tailwind/blob/master/lib/generators/simple_form/tailwind/templates/simple_form.rb
+
 #
 # Uncomment this and change the path if necessary to include your own
 # components.
