@@ -1,6 +1,16 @@
 <h1>Hello World</h1>
 
-<p>posts go here...</p>
+<div>
+  <% @posts.each do |post| %>
+    <div>
+      <span><%= post.body %></span>
+      <br>
+      <span><%= time_ago_in_words(post.created_at) %></span>
+      <br>
+      <span><%= post.user.name %></span>
+    </div>
+  <% end %>
+</div>
 
 <p>
   <%= link_to 'New Post', new_post_path %>

@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   def index
-    @posts = []
+    @posts = Post.all.order(created_at: :desc).limit(50).includes(:user)
   end
 
   def new
