@@ -7,8 +7,13 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   </head>
-
-  <body>
+  <body class="bg-gray-50">
+    <header class="py-3 bg-white border-b border-gray-200">
+      <div class="container flex items-center justify-between mx-auto">
+        <%= link_to 'PaperTrail Guides', '/', class: 'font-extrabold' %>
+        <%= link_to 'New Post', new_post_path, class: 'bg-gradient-to-tr from-orange-500 to-pink-600 text-white text-xs uppercase font-bold leading-none py-3 px-6 rounded-md hover:bg-gradient-to-br' %>
+      </div>
+    </header>
     <main>
       <%= yield %>
     </main>
