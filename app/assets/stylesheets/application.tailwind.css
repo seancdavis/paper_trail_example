@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply mb-6 text-3xl font-light;
+  }
+
+  input:not([type='submit']),
+  textarea,
+  select {
+    @apply border
+      border-gray-400
+      block
+      rounded-md
+      w-full;
+  }
+}
+
+@layer components {
+  .button {
+    @apply bg-gradient-to-tr
+      font-bold
+      hover:bg-gradient-to-br
+      hover:cursor-pointer
+      leading-none
+      px-6
+      py-3
+      rounded-md
+      text-xs
+      uppercase
+    from-orange-500
+    text-white
+    to-pink-600;
+  }
+}
