@@ -11,10 +11,10 @@
   <body class="bg-gray-50">
     <header class="px-4 py-3 bg-white border-b border-gray-200 md:px-0">
       <div class="container flex items-center justify-between mx-auto">
-        <%= link_to 'PaperTrail Guides', '/', class: 'font-extrabold' %>
+        <%= link_to 'PaperTrail Guides', '/', class: 'font-extrabold py-2' %>
         <div class="flex items-center space-x-3">
-          <%= link_to 'New Post', new_post_path, class: 'button' %>
           <% if user_signed_in? %>
+            <%= link_to 'New Post', new_post_path, class: 'button' %>
             <div class="flex-shrink-0">
               <%= image_tag "https://i.pravatar.cc/400?img=#{current_user.id}", class: "rounded-full h-8 w-8" %>
             </div>
