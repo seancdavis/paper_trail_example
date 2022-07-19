@@ -1,0 +1,4 @@
+<%= simple_form_for :session, method: :post, url: sessions_path, html: { class: 'p-4 mb-4 bg-white border border-gray-200 rounded-md' } do |f| %>
+  <%= f.input :user_id, label: 'Choose User', collection: User.all.order(name: :asc) %>
+  <%= f.button :submit, 'Set User' %>
+<% end %>
