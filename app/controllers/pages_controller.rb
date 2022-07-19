@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-  def home; end
+  def home
+    @view_options[:header] = false
+  end
 
   def show
     render params[:slug]
