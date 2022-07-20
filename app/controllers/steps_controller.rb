@@ -10,7 +10,8 @@ class StepsController < ApplicationController
 
   def show
     current_step = (params[:step] || session[:current_step] || 1).to_i
-    return redirect_to step_path(step: 1) if current_step < 1 || current_step > 2
+    return redirect_to step_path(step: 1) if current_step < 1
+    return redirect_to step_path(step: 2) if current_step > 2
 
     render step_views[current_step]
   end
