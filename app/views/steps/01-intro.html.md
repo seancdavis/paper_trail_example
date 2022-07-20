@@ -11,5 +11,5 @@ end
 ```
 
 <div class="mt-8 text-center">
-  <%= link_to "Next Step", set_step_path(step: 1), class: 'button', method: :post %>
+  <%= link_to "Next Step", set_step_path(step: 2), class: 'button', method: :post %>
 </div>

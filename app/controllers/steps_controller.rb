@@ -5,18 +5,18 @@ class StepsController < ApplicationController
 
   def set_step
     session[:current_step] = params[:step]
-    redirect_to step_path
+    redirect_to step_path(params[:step])
   end
 
   def show
-    current_step = (session[:current_step] || 0).to_i
+    current_step = (params[:step] || session[:current_step] || 1).to_i
     render step_views[current_step]
   end
 
   private
 
   def step_views
-    %w[01-intro 02-test]
+    [nil, '01-intro', '02-test']
   end
 
   def set_view_options
