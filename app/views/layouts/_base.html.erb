@@ -30,7 +30,7 @@
       <%= yield %>
     </main>
     <% if @view_options[:step_control] && session[:current_step] %>
-      <div class="fixed px-6 py-3 bg-pink-500 rounded-md bottom-4 right-4">
+      <div class="fixed px-6 py-3 bg-pink-500 rounded-md shadow-md shadow-gray-400 bottom-4 right-4">
         <%= link_to 'Back to Instructions', step_path, class: 'text-white' %>
       </div>
     <% end %>
