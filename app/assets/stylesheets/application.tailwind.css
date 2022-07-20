@@ -24,6 +24,21 @@
       rounded-md
       w-full;
   }
+
+  pre {
+    @apply bg-gray-100
+      border
+      border-gray-200
+      mb-4
+      p-4
+      rounded-md
+      text-sm;
+  }
+
+  p:last-child,
+  pre:last-child {
+    @apply mb-0;
+  }
 }
 
 @layer components {
@@ -62,5 +77,13 @@
       text-white
       transition-colors
       uppercase;
+  }
+
+  /* ----- Basic Page ---- */
+
+  .basic-page-content h1 {
+    @apply leading-snug
+      mb-6
+      text-center;
   }
 }
