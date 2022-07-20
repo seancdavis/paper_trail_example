@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :sessions, only: %i[new create destroy]
 
   get '/step', to: 'steps#show', as: :step
-  post '/step/:step', to: 'steps#set_current_step', as: :set_current_step
+  post '/step/:step', to: 'steps#set_step', as: :set_step
 
   root 'pages#home'
 end

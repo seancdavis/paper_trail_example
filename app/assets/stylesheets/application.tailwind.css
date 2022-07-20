@@ -35,9 +35,8 @@
       text-sm;
   }
 
-  p:last-child,
-  pre:last-child {
-    @apply mb-0;
+  .CodeRay {
+    @apply mb-4;
   }
 }
 
@@ -47,6 +46,7 @@
       font-bold
       hover:bg-gradient-to-br
       hover:cursor-pointer
+      inline-block
       leading-none
       no-underline
       px-6
@@ -68,6 +68,7 @@
       hover:bg-white
       hover:cursor-pointer
       hover:text-orange-500
+      inline-block
       leading-none
       no-underline
       px-6

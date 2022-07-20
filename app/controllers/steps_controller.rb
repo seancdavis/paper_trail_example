@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class StepsController < ApplicationController
-  def set_current_step
+  before_action :set_view_options
+
+  def set_step
     session[:current_step] = params[:step]
     redirect_to step_path
   end
@@ -15,5 +17,9 @@ class StepsController < ApplicationController
 
   def step_views
     %w[01-intro 02-test]
+  end
+
+  def set_view_options
+    @view_options[:step_control] = false
   end
 end
