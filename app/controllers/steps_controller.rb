@@ -2,6 +2,7 @@
 
 class StepsController < ApplicationController
   before_action :set_view_options
+  helper_method :step_views, :next_step, :prev_step
 
   def set_step
     session[:current_step] = params[:step]
@@ -18,6 +19,18 @@ class StepsController < ApplicationController
   end
 
   private
+
+  def prev_step
+    return nil unless params[:step] && params[:step].to_i > 1
+
+    params[:step].to_i - 1
+  end
+
+  def next_step
+    return nil unless params[:step] && params[:step].to_i + 1 < step_views.size
+
+    params[:step].to_i + 1
+  end
 
   def step_views
     [nil, '01-intro', '02-create-post', '03-install-paper-trail', '04-verify-pt-setup']

@@ -40,7 +40,3 @@ end
 ```
 
 In the next step, we'll make sure PaperTrail is working.
-
-<div class="mt-8 text-center">
-  <%= link_to "PaperTrail is installed!", set_step_path(step: 4), class: 'button', method: :post %>
-</div>

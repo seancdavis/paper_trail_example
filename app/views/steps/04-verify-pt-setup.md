@@ -41,7 +41,3 @@ User.find(latest_post.versions.last.whodunnit)
 #   created_at: "...",
 #   updated_at: "...">
 ```
-
-<div class="mt-8 text-center">
-  <%= link_to "PaperTrail works!", set_step_path(step: 5), class: 'button', method: :post %>
-</div>
