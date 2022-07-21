@@ -9,9 +9,10 @@ class StepsController < ApplicationController
   end
 
   def show
+    max_step = step_views.size - 1
     current_step = (params[:step] || session[:current_step] || 1).to_i
     return redirect_to step_path(step: 1) if current_step < 1
-    return redirect_to step_path(step: 2) if current_step > 2
+    return redirect_to step_path(step: max_step) if current_step > max_step
 
     render step_views[current_step]
   end
@@ -19,7 +20,7 @@ class StepsController < ApplicationController
   private
 
   def step_views
-    [nil, '01-intro', '02-test']
+    [nil, '01-intro', '02-create-post', '03-install-paper-trail']
   end
 
   def set_view_options

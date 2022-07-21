@@ -4,12 +4,11 @@ We're starting with a basic simple mini blog application. If you've seeded the d
 
 If not, run the following commands:
 
-```ruby
-def hello
-  puts "Hello"
-end
+```text
+> bundle install
+> bundle exec rails db:setup
 ```
 
 <div class="mt-8 text-center">
-  <%= link_to "Next Step", set_step_path(step: 2), class: 'button', method: :post %>
+  <%= link_to "I see the post feed", set_step_path(step: 2), class: 'button', method: :post %>
 </div>
