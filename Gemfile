@@ -56,6 +56,7 @@ gem 'simple_form'
 gem 'tailwindcss-rails', '~> 2.0'
 
 gem 'coderay'
+gem 'paper_trail'
 gem 'redcarpet'
 
 group :development, :test do

@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   helper_method :user_signed_in?, :current_user
   before_action :set_default_view_options
+  before_action :set_paper_trail_whodunnit
 
   private
 
