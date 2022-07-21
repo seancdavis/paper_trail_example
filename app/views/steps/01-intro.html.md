@@ -5,8 +5,8 @@ We're starting with a basic simple mini blog application. If you've seeded the d
 If not, run the following commands:
 
 ```text
-> bundle install
-> bundle exec rails db:setup
+bundle install
+bundle exec rails db:setup
 ```
 
 <div class="mt-8 text-center">
