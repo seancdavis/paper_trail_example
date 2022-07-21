@@ -8,7 +8,3 @@ If not, run the following commands:
 bundle install
 bundle exec rails db:setup
 ```
-
-<div class="mt-8 text-center">
-  <%= link_to "I see the post feed", set_step_path(step: 2), class: 'button', method: :post %>
-</div>
