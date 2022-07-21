@@ -20,7 +20,7 @@ class StepsController < ApplicationController
   private
 
   def step_views
-    [nil, '01-intro', '02-create-post', '03-install-paper-trail']
+    [nil, '01-intro', '02-create-post', '03-install-paper-trail', '04-verify-pt-setup']
   end
 
   def set_view_options

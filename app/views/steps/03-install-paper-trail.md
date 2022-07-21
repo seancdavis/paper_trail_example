@@ -9,14 +9,14 @@ gem 'paper_trail'
 Install the gem:
 
 ```text
-> bundle install
+bundle install
 ```
 
 Add the versions table to your database
 
 ```text
-> bundle exec rails generate paper_trail:install --with-changes
-> bundle exec rake db:migrate
+bundle exec rails generate paper_trail:install --with-changes
+bundle exec rake db:migrate
 ```
 
 Then add PaperTrail to the post model:
@@ -26,9 +26,20 @@ Then add PaperTrail to the post model:
 
 class Post < ApplicationRecord
   has_paper_trail
+end
+```
+
+And set `whodunnit` as the `current_user` in your application controller:
+
+```ruby
+# app/controllers/application_controller.rb
+
+class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
 end
 ```
+
+In the next step, we'll make sure PaperTrail is working.
 
 <div class="mt-8 text-center">
   <%= link_to "PaperTrail is installed!", set_step_path(step: 4), class: 'button', method: :post %>
