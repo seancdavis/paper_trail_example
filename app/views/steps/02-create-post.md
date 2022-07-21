@@ -2,7 +2,7 @@
 
 You can also create posts. Let's make sure it's working.
 
-Begin by <%= link_to "signing in", new_session_path %>. All you have to do is pick a user — no password is required.
+Begin by <%= link_to "signing in", new_session_path(redirect_to: request.path) %>. All you have to do is pick a user — no password is required.
 
 After you do that, you should be redirected back here, and you should see your user's avatar in the top right corner.
 
