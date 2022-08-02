@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   def restore
     post = Post.find(params[:id])
     version = post.versions.find(params[:version])
-    version.reify.save
+    post.update(body: version.changeset[:body][1])
     redirect_to post
   end
 
