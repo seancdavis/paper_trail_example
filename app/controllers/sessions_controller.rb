@@ -2,6 +2,8 @@
 
 class SessionsController < ApplicationController
   def new
+    return redirect_to(request.referrer || root_path) if user_signed_in?
+
     session[:redirect_to] = params[:redirect_to] if params[:redirect_to]
   end
 

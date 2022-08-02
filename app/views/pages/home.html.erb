@@ -2,11 +2,7 @@
   <div>
     <h1 class="max-w-4xl mx-auto mb-12 font-bold leading-snug text-center text-8xl">The Ultimate PaperTrail Guide</h1>
     <div class="text-center">
-      <% if session[:current_step] %>
-        <%= link_to "Go to Step #{session[:current_step]}", step_path(step: session[:current_step]), class: 'button-alt text-lg' %>
-      <% else %>
-        <%= link_to 'Get Started', set_step_path(step: 1), class: 'button-alt text-lg', method: :post %>
-      <% end %>
+      <%= link_to 'View Posts', posts_path, class: 'button-alt text-lg' %>
     </div>
   </div>
 </div>

@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_default_view_options
-    @view_options = { header: true, step_control: true }
+    @view_options = { header: true }
   end
 end

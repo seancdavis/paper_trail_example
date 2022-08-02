@@ -2,6 +2,6 @@
 
 class PagesController < ApplicationController
   def home
-    @view_options = { step_control: false, header: false }
+    @view_options = { header: false }
   end
 end
