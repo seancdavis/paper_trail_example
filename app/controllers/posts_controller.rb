@@ -38,6 +38,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def restore
+    post = Post.find(params[:id])
+    version = post.versions.find(params[:version])
+    version.reify.save
+    redirect_to post
+  end
+
   private
 
   def post_params
