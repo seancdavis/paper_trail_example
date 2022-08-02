@@ -6,7 +6,7 @@
       </div>
       <div class="leading-none">
         <span class="block mb-[0.125rem] text-sm font-bold"><%= post.user.name %></span>
-        <%= link_to time_ago_in_words(post.created_at), post, class: "block text-xs text-gray-500 no-underline" %>
+        <%= link_to "#{time_ago_in_words(post.created_at)} ago", post, class: "block text-xs text-gray-500 no-underline" %>
       </div>
     </div>
     <div>
