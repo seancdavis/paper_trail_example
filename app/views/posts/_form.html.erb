@@ -1,0 +1,7 @@
+<%= simple_form_for @post, html: { class: 'p-4 mb-4 bg-white border border-gray-200 rounded-md' } do |f| %>
+  <%= f.input :body %>
+  <div class="flex items-center">
+    <%= f.button :submit, 'Create Post' %>
+    <%= link_to 'Cancel', posts_path, class: 'ml-3 text-sm text-gray-500' %>
+  </div>
+<% end %>
