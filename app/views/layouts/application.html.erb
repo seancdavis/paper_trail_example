@@ -20,9 +20,9 @@
               <div class="flex-shrink-0">
                 <%= image_tag "https://i.pravatar.cc/400?img=#{current_user.id}", class: "rounded-full h-8 w-8" %>
               </div>
-              <%= link_to 'Sign Out', session_path(current_user), method: :delete, class: 'text-sm' %>
+              <%= link_to 'Sign Out', session_path(current_user), method: :delete, class: 'text-sm no-underline hover:underline' %>
             <% else %>
-              <%= link_to 'Sign In', new_session_path, class: 'text-sm' %>
+              <%= link_to 'Sign In', new_session_path, class: 'text-sm no-underline hover:underline' %>
             <% end %>
           </div>
         </div>

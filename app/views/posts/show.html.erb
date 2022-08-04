@@ -13,7 +13,7 @@
           </p>
           <% if version.changeset[:body][1] && version.changeset[:body][1] != @post.body %>
             <div>
-              <%= link_to 'Restore', restore_post_path(@post, version), method: :post, class: "text-xs text-gray-500 uppercase" %>
+              <%= link_to 'Restore', restore_post_path(@post, version), method: :post, class: "text-xs text-gray-500 uppercase no-underline hover:underline" %>
             </div>
           <% end %>
         </div>
