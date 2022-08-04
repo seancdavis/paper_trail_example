@@ -38,11 +38,17 @@ class PostsController < ApplicationController
     end
   end
 
+  # --- Atypical Rails Actions ---
+
   def restore
-    post = Post.find(params[:id])
-    version = post.versions.find(params[:version])
+    version = PaperTrail::Version.find(params[:version])
+    post = version.item
     post.update(body: version.changeset[:body][1])
     redirect_to post
+  end
+
+  def activity
+    @versions = PaperTrail::Version.where(item_type: 'Post').order(created_at: :desc).limit(50).includes(:item, :user)
   end
 
   private
