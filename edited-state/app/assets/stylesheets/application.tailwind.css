@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply mb-6 text-3xl font-light;
+  }
+
+  a {
+    @apply text-pink-600 underline;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  input:not([type='submit']),
+  textarea,
+  select {
+    @apply border
+      border-gray-400
+      block
+      rounded-md
+      w-full;
+  }
+
+  pre {
+    @apply bg-gray-100
+      border
+      border-gray-200
+      mb-4
+      p-4
+      rounded-md
+      text-sm;
+  }
+
+  .CodeRay {
+    @apply mb-4;
+  }
+}
+
+@layer components {
+  .button {
+    @apply bg-gradient-to-tr
+      font-bold
+      hover:bg-gradient-to-br
+      hover:cursor-pointer
+      inline-block
+      leading-none
+      no-underline
+      px-6
+      py-3
+      rounded-md
+      text-xs
+      uppercase
+    from-orange-500
+    text-white
+    to-pink-600;
+  }
+
+  .button-alt {
+    @apply border
+      border-white
+      bg-transparent
+      duration-500
+      font-bold
+      hover:bg-white
+      hover:cursor-pointer
+      hover:text-orange-500
+      inline-block
+      leading-none
+      no-underline
+      px-6
+      py-3
+      rounded-md
+      text-xs
+      text-white
+      transition-colors
+      uppercase;
+  }
+
+  /* ----- Basic Page ---- */
+
+  .basic-page-content h1 {
+    @apply leading-snug
+      mb-6
+      text-center;
+  }
+}

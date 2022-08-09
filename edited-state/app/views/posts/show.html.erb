@@ -1,0 +1,10 @@
+<div class="max-w-xl px-4 py-8 mx-auto md:px-0">
+  <%= link_to '< Post Feed', posts_path, class: 'mb-4 inline-block' %>
+  <%= render @post %>
+  <div>
+    <h3 class="mt-8 mb-2 text-lg font-semibold">History</h3>
+    <% @post.versions.includes(:user).reverse.each do |version| %>
+      <%= render partial: 'posts/version', object: version %>
+    <% end %>
+  </div>
+</div>
