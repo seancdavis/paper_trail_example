@@ -24,20 +24,6 @@
       rounded-md
       w-full;
   }
-
-  pre {
-    @apply bg-gray-100
-      border
-      border-gray-200
-      mb-4
-      p-4
-      rounded-md
-      text-sm;
-  }
-
-  .CodeRay {
-    @apply mb-4;
-  }
 }
 
 @layer components {
