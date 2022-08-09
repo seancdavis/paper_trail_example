@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_for :users
   get '/posts/activity', to: 'posts#activity', as: 'posts_activity'
   post '/posts/restore/:version', to: 'posts#restore', as: 'restore_post'
   resources :posts
