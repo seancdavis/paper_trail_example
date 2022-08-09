@@ -27,5 +27,5 @@ channels = Channel.all
 # ---------------------------------------- | Post
 
 500.times do
-  create_object(Message, body: Faker::Lorem.sentence, user: users.sample, channel: channels.sample)
+  create_object(Message, body: Faker::Hipster.sentence, user: users.sample, channel: channels.sample)
 end
