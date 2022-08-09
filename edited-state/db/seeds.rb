@@ -1,39 +1,31 @@
 # frozen_string_literal: true
 
-# ---------------------------------------- | User
-
-def create_user
-  User.create!(email: Faker::Internet.email, password: 'password', name: Faker::Name.name)
+def create_object(klass, attributes, _attempt = 1)
+  obj = klass.new(attributes)
+  obj.save!
 rescue StandardError => e
-  puts e.message
-  create_user
+  puts "[User ERROR] #{e.message}"
+  puts obj.attributes
 end
 
-15.times { create_user }
+# ---------------------------------------- | User
+
+15.times do
+  create_object(User, email: Faker::Internet.email, password: 'password', name: Faker::Name.name)
+end
+
 users = User.all
 
 # ---------------------------------------- | Channels
 
-def create_channel
-  Channel.create!(title: Faker::Music.band.downcase.gsub(' ', '-'))
-rescue StandardError => e
-  puts e.message
-  create_channel
+10.times do
+  create_object(Channel, title: Faker::Company.buzzword.downcase.gsub(/[\ ']/, '-'))
 end
 
-10.times { create_channel }
 channels = Channel.all
 
 # ---------------------------------------- | Post
 
-def create_message(channel, user)
-  puts user.id
-  Message.create!(body: Faker::Lorem.sentence, user:, channel:)
-rescue StandardError => e
-  puts e.message
-  create_message(channel, user)
-end
-
-channels.each do |channel|
-  rand(20..100).times { create_message(channel, users.sample) }
+500.times do
+  create_object(Message, body: Faker::Lorem.sentence, user: users.sample, channel: channels.sample)
 end

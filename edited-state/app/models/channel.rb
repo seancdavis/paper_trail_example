@@ -8,4 +8,6 @@ class Channel < ApplicationRecord
                       with: /\A[a-zA-Z0-9\-_]+\z/,
                       message: 'only allows letters, numbers, dashes, and underscores'
                     }
+
+  has_many :messages
 end

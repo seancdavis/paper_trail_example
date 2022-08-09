@@ -15,7 +15,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_101957) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_channels_on_title", unique: true
   end
 
   create_table "messages", force: :cascade do |t|
@@ -24,8 +23,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_101957) do
     t.integer "channel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["channel_id"], name: "index_messages_on_channel_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,6 +49,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_101957) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  add_foreign_key "messages", "channels"
-  add_foreign_key "messages", "users"
 end
