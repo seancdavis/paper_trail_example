@@ -14,6 +14,7 @@ end
   create_object(User, email: Faker::Internet.email, password: 'password', name: Faker::Name.name)
 end
 
+User.create(email: 'admin@example.com', password: 'password', name: 'Admin')
 users = User.all
 
 # ---------------------------------------- | Channels
