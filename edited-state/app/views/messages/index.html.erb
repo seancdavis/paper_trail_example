@@ -47,9 +47,12 @@
               <%= image_tag "https://i.pravatar.cc/400?img=#{message.user.id}", class: "rounded-lg h-10 w-10" %>
             </div>
             <div class="relative flex-grow">
-              <div class="flex mb-1 space-x-2 text-sm">
+              <div class="flex items-center mb-1 space-x-2 text-sm">
                 <span class="font-bold "><%= message.user.name %></span>
                 <span class="text-stone-500"><%= message.created_at.to_fs(:time) %></span>
+                <% if message.versions.select { |v| v.event == 'update' }.size > 0 %>
+                  <span class="px-1 py-[2px] text-xs text-blue-400 uppercase bg-blue-100 border border-blue-200 rounded-sm">Edited</span>
+                <% end %>
               </div>
               <div class="flex-grow">
                 <%= message.body %>

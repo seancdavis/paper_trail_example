@@ -3,14 +3,13 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_channel, except: [:home]
+  before_action :set_messages, only: %i[index edit]
 
   def index
-    @messages = @channel.messages.includes(:user)
     @message = Message.new
   end
 
   def edit
-    @messages = @channel.messages.includes(:user)
     @message = current_user.messages.where(id: params[:id], channel: @channel).first
 
     if @message.nil?
@@ -26,7 +25,7 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to channel_messages_path(@channel), notice: 'Message was created successfully.'
     else
-      @messages = @channel.messages.includes(:user)
+      set_messages
       render :index
     end
   end
@@ -42,7 +41,7 @@ class MessagesController < ApplicationController
     if @message.update(message_params)
       redirect_to channel_messages_path(@channel), notice: 'Message was updated successfully.'
     else
-      @messages = @channel.messages.includes(:user)
+      set_messages
       render :index
     end
   end
@@ -63,5 +62,9 @@ class MessagesController < ApplicationController
 
   def set_channel
     @channel = Channel.find(params[:channel_id])
+  end
+
+  def set_messages
+    @messages = @channel.messages.includes(:user, :versions)
   end
 end
