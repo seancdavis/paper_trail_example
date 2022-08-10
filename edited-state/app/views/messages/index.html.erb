@@ -1,0 +1,54 @@
+<div class="flex h-screen">
+  <%# --- Channels (Left Col) --- %>
+  <div class="text-white bg-stone-800">
+    <div class="px-8 py-6 border-b border-stone-600">
+      <h2 class="mb-1 text-sm font-extralight">Ultimate PaperTrail Guide</h2>
+      <h1 class="mb-0 text-2xl font-bold">Edited State Example</h1>
+    </div>
+    <div class="py-4">
+      <h2 class="mx-6 mb-4 text-sm font-extralight">Channels</h2>
+      <nav>
+        <% Channel.all.each do |channel| %>
+          <%= link_to "##{channel.title}", messages_path(channel), class: channel_link_classes(channel) %>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+  <%# --- Messages (Right Col) --- %>
+  <div class="flex-grow">
+    <div class="h-full py-6 pb-20 overflow-y-scroll">
+      <% @messages.group_by { |x| message_group(x) }.each do |date, messages| %>
+        <div class="relative my-4 text-center">
+          <div class="w-full h-[1px] bg-stone-200 absolute top-[12px]"></div>
+          <span class="relative inline-block px-3 py-1 mx-auto text-xs border rounded-full bg-gray-50 border-stone-400"><%= date %></span>
+        </div>
+        <% messages.each do |message| %>
+          <div class="flex px-4 mb-6 space-x-2" id="message-<%= message.id %>">
+            <div class="mt-1">
+              <%= image_tag "https://i.pravatar.cc/400?img=#{message.user.id}", class: "rounded-lg h-10 w-10" %>
+            </div>
+            <div>
+              <div class="flex mb-1 space-x-2 text-sm">
+                <span class="font-bold "><%= message.user.name %></span>
+                <span class="text-stone-500"><%= message.created_at.to_fs(:time) %></span>
+              </div>
+              <div class="flex-grow">
+                <%= message.body %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="fixed bottom-0 w-full bg-white border-t-2 border-stone-300">
+      <%= simple_form_for @message do |f| %>
+        <%= f.input :body, label: false, placeholder: 'New message ...' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%# Scroll to latest message %>
+<script type="text/javascript">
+  var lastMessage = document.getElementById("message-<%= @messages.last.id %>");
+  lastMessage.scrollIntoView();
+</script>

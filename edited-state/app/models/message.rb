@@ -7,4 +7,6 @@ class Message < ApplicationRecord
   belongs_to :channel
 
   validates :body, presence: true
+
+  default_scope { order(created_at: :asc) }
 end

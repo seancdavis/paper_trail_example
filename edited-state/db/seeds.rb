@@ -29,3 +29,11 @@ channels = Channel.all
 500.times do
   create_object(Message, body: Faker::Hipster.sentence, user: users.sample, channel: channels.sample)
 end
+
+PaperTrail.request.disable_model(Message)
+
+Message.all.each do |message|
+  message.update!(created_at: rand(1.month).seconds.ago)
+end
+
+PaperTrail.request.enable_model(Message)

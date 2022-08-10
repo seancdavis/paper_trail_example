@@ -2,11 +2,10 @@
 
 Rails.application.routes.draw do
   devise_for :users
-  get '/posts/activity', to: 'posts#activity', as: 'posts_activity'
-  post '/posts/restore/:version', to: 'posts#restore', as: 'restore_post'
-  resources :posts
 
-  resources :sessions, only: %i[new create destroy]
+  scope '/channels/:channel_id' do
+    resources :messages
+  end
 
-  root 'posts#index'
+  root 'messages#home'
 end

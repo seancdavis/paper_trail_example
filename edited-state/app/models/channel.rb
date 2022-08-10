@@ -10,4 +10,6 @@ class Channel < ApplicationRecord
                     }
 
   has_many :messages
+
+  default_scope { order(:title) }
 end
