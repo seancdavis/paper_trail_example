@@ -15,12 +15,17 @@
     @apply mb-4;
   }
 
-  input:not([type='submit']),
+  input,
   textarea,
   select {
     @apply border-0
       block
       w-full;
+  }
+
+  input[type='submit'] {
+    @apply inline-block
+      w-auto;
   }
 }
 
