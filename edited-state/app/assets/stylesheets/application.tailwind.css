@@ -18,7 +18,8 @@
   input:not([type='submit']),
   textarea,
   select {
-    @apply block
+    @apply border-0
+      block
       w-full;
   }
 }
