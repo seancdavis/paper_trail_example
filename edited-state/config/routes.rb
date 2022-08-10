@@ -3,8 +3,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  scope '/channels/:channel_id' do
-    resources :messages, only: %i[create index]
+  resources :channels, only: %i[index show] do
+    resources :messages, only: %i[create index edit update]
   end
 
   root 'messages#home'

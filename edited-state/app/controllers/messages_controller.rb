@@ -9,10 +9,38 @@ class MessagesController < ApplicationController
     @message = Message.new
   end
 
+  def edit
+    @messages = @channel.messages.includes(:user)
+    @message = current_user.messages.where(id: params[:id], channel: @channel).first
+
+    if @message.nil?
+      redirect_to channel_messages_path(@channel),
+                  alert: 'You can only edit your own messages from this channel.'
+    end
+
+    render :index
+  end
+
   def create
-    @message = Message.new(message_params)
+    @message = Message.new(create_params)
     if @message.save
-      redirect_to messages_path(@channel), notice: 'Message was successfully created.'
+      redirect_to channel_messages_path(@channel), notice: 'Message was created successfully.'
+    else
+      @messages = @channel.messages.includes(:user)
+      render :index
+    end
+  end
+
+  def update
+    @message = current_user.messages.where(id: params[:id], channel: @channel).first
+
+    if @message.nil?
+      redirect_to channel_messages_path(@channel),
+                  alert: 'You can only edit your own messages from this channel.'
+    end
+
+    if @message.update(message_params)
+      redirect_to channel_messages_path(@channel), notice: 'Message was updated successfully.'
     else
       @messages = @channel.messages.includes(:user)
       render :index
@@ -20,13 +48,17 @@ class MessagesController < ApplicationController
   end
 
   def home
-    redirect_to messages_path(Channel.first)
+    redirect_to channel_messages_path(Channel.first)
   end
 
   private
 
   def message_params
-    params.require(:message).permit(:body).merge(channel: @channel, user: current_user)
+    params.require(:message).permit(:body)
+  end
+
+  def create_params
+    message_params.merge(channel: @channel, user: current_user)
   end
 
   def set_channel

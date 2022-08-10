@@ -24,7 +24,8 @@
   }
 
   input[type='submit'] {
-    @apply inline-block
+    @apply hover:cursor-pointer
+      inline-block
       w-auto;
   }
 }
