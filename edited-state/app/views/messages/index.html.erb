@@ -16,7 +16,26 @@
   </div>
   <%# --- Messages (Right Col) --- %>
   <div class="flex-grow">
-    <div class="h-full py-6 pb-20 overflow-y-scroll">
+    <%# --- Header --- %>
+    <div class="fixed top-0 w-full py-3 bg-white border-b border-gray-200 md:px-0">
+      <div class="flex items-center justify-between w-full px-4 mx-auto">
+        <div>
+          <span class="font-bold">#<%= @channel.title %></span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <% if user_signed_in? %>
+            <div class="flex-shrink-0">
+              <%= image_tag "https://i.pravatar.cc/400?img=#{current_user.id}", class: "rounded-full h-8 w-8 border border-stone-300" %>
+            </div>
+            <%= link_to 'Sign Out', session_path(current_user), method: :delete, class: 'text-sm no-underline hover:underline' %>
+          <% else %>
+            <%= link_to 'Sign In', new_session_path, class: 'text-sm no-underline hover:underline' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%# --- Messages --- %>
+    <div class="h-full pt-16 pb-20 overflow-y-scroll">
       <% @messages.group_by { |x| message_group(x) }.each do |date, messages| %>
         <div class="relative my-4 text-center">
           <div class="w-full h-[1px] bg-stone-200 absolute top-[12px]"></div>
@@ -40,6 +59,7 @@
         <% end %>
       <% end %>
     </div>
+    <%# --- New Message Form --- %>
     <div class="fixed bottom-0 w-full bg-white border-t-2 border-stone-300">
       <%= simple_form_for @message do |f| %>
         <%= f.input :body, label: false, placeholder: 'New message ...' %>
