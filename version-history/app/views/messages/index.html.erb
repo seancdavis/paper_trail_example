@@ -1,0 +1,83 @@
+<div class="flex h-screen">
+  <%# --- Channels (Left Col) --- %>
+  <div class="text-white bg-stone-800">
+    <div class="px-8 py-6 border-b border-stone-600">
+      <h2 class="mb-1 text-sm font-extralight">Ultimate PaperTrail Guide</h2>
+      <h1 class="mb-0 text-2xl font-bold">Edited State Example</h1>
+    </div>
+    <div class="py-4">
+      <h2 class="mx-6 mb-4 text-sm font-extralight">Channels</h2>
+      <nav>
+        <% Channel.all.each do |channel| %>
+          <%= link_to "##{channel.title}", channel_messages_path(channel), class: channel_link_classes(channel) %>
+        <% end %>
+      </nav>
+    </div>
+  </div>
+  <%# --- Messages (Right Col) --- %>
+  <div class="relative flex-grow">
+    <%# --- Header --- %>
+    <div class="absolute top-0 left-0 right-0 z-10">
+      <div class="flex items-center justify-between w-full px-4 py-3 mx-auto bg-white border-b border-gray-200">
+        <div>
+          <span class="font-bold">#<%= @channel.title %></span>
+        </div>
+        <div class="flex items-center space-x-2">
+          <% if user_signed_in? %>
+            <div class="flex-shrink-0">
+              <%= image_tag "https://i.pravatar.cc/400?img=#{current_user.id}", class: "rounded-full h-8 w-8 border border-stone-300" %>
+            </div>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'text-sm no-underline hover:underline' %>
+          <% else %>
+            <%= link_to 'Sign In', new_user_session_path, class: 'text-sm no-underline hover:underline' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%# --- Messages --- %>
+    <div class="relative z-0 h-full pt-16 pb-20 overflow-y-scroll">
+      <% @messages.group_by { |x| message_group(x) }.each do |date, messages| %>
+        <div class="relative my-4 text-center">
+          <div class="w-full h-[1px] bg-stone-200 absolute top-[12px]"></div>
+          <span class="relative inline-block px-3 py-1 mx-auto text-xs border rounded-full bg-gray-50 border-stone-400"><%= date %></span>
+        </div>
+        <% messages.each do |message| %>
+          <div class="flex px-4 mb-6 space-x-2" id="message-<%= message.id %>">
+            <div class="mt-1">
+              <%= image_tag "https://i.pravatar.cc/400?img=#{message.user.id}", class: "rounded-lg h-10 w-10" %>
+            </div>
+            <div class="relative flex-grow">
+              <div class="flex items-center mb-1 space-x-2 text-sm">
+                <span class="font-bold "><%= message.user.name %></span>
+                <span class="text-stone-500"><%= message.created_at.to_fs(:time) %></span>
+                <% if message.versions.select { |v| v.event == 'update' }.size > 0 %>
+                  <span class="px-1 py-[2px] text-xs text-blue-400 uppercase bg-blue-100 border border-blue-200 rounded-sm">Edited</span>
+                <% end %>
+              </div>
+              <div class="flex-grow">
+                <%= message.body %>
+              </div>
+              <% if message.user == current_user %>
+                <div class="absolute top-2 right-4">
+                  <%= link_to 'Edit', edit_channel_message_path(@channel, message), class: 'text-xs p-2 border border-stone-300 text-stone-500 uppercase no-underline rounded-md hover:text-pink-500 hover:border-pink-500 duration-300 transition-colors' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <%# --- New Message Form --- %>
+    <div class="absolute bottom-0 left-0 right-0 z-10 bg-white border-t border-stone-300">
+      <%= simple_form_for [@channel, @message], html: { class: 'relative'} do |f| %>
+        <%= f.input :body, label: false, placeholder: 'New message ...' %>
+        <%= f.submit 'Send', class: 'bg-blue-500 absolute right-4 top-3 text-sm text-white rounded-md py-2 px-4' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%# Scroll to latest message %>
+<script type="text/javascript">
+  var lastMessage = document.getElementById("message-<%= @messages.last.id %>");
+  lastMessage.scrollIntoView();
+</script>
