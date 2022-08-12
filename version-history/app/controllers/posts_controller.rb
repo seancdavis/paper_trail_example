@@ -1,70 +1,51 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_channel, except: [:home]
-  before_action :set_posts, only: %i[index edit]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_post, only: %i[show edit update destroy]
 
   def index
+    @posts = Post.all.order(published_at: :desc)
+  end
+
+  def new
     @post = Post.new
   end
 
-  def edit
-    @post = current_user.posts.where(id: params[:id], channel: @channel).first
-
-    if @post.nil?
-      redirect_to channel_posts_path(@channel),
-                  alert: 'You can only edit your own posts from this channel.'
-    end
-
-    render :index
-  end
+  def show; end
 
   def create
-    @post = Post.new(create_params)
+    @post = Post.new(post_params)
     if @post.save
-      redirect_to channel_posts_path(@channel), notice: 'Post was created successfully.'
+      redirect_to @post, notice: 'Post was created successfully.'
     else
-      set_posts
-      render :index
+      render :new
     end
   end
+
+  def edit; end
 
   def update
-    @post = current_user.posts.where(id: params[:id], channel: @channel).first
-
-    if @post.nil?
-      redirect_to channel_posts_path(@channel),
-                  alert: 'You can only edit your own posts from this channel.'
-    end
-
     if @post.update(post_params)
-      redirect_to channel_posts_path(@channel), notice: 'Post was updated successfully.'
+      redirect_to @post, notice: 'Post was updated successfully.'
     else
-      set_posts
-      render :index
+      render :edit
     end
   end
 
-  def home
-    redirect_to channel_posts_path(Channel.first)
+  def destroy
+    @post.destroy
+    redirect_to posts_path, notice: 'Post was deleted successfully.'
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:body)
+    params.require(:post).permit(:title, :body, :user, :published_at)
   end
 
-  def create_params
-    post_params.merge(channel: @channel, user: current_user)
-  end
-
-  def set_channel
-    @channel = Channel.find(params[:channel_id])
-  end
-
-  def set_posts
-    @posts = @channel.posts.includes(:user, :versions)
+  def set_post
+    @post = Post.find(params[:id])
+    not_found unless @post
   end
 end

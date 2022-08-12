@@ -3,9 +3,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :channels, only: %i[index show] do
-    resources :posts, only: %i[create index edit update]
-  end
+  resources :posts
 
-  root 'posts#home'
+  root 'application#home'
 end

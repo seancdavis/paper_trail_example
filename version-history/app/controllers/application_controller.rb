@@ -3,9 +3,13 @@
 class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
 
+  def home
+    redirect_to posts_path
+  end
+
   private
 
-  def set_default_view_options
-    @view_options = { header: true }
+  def not_found
+    raise ActionController::RoutingError, 'Not Found'
   end
 end
