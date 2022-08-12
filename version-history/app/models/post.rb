@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Message < ApplicationRecord
+class Post < ApplicationRecord
   has_paper_trail
 
   belongs_to :user

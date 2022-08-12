@@ -9,12 +9,12 @@
       <h2 class="mx-6 mb-4 text-sm font-extralight">Channels</h2>
       <nav>
         <% Channel.all.each do |channel| %>
-          <%= link_to "##{channel.title}", channel_messages_path(channel), class: channel_link_classes(channel) %>
+          <%= link_to "##{channel.title}", channel_posts_path(channel), class: channel_link_classes(channel) %>
         <% end %>
       </nav>
     </div>
   </div>
-  <%# --- Messages (Right Col) --- %>
+  <%# --- Posts (Right Col) --- %>
   <div class="relative flex-grow">
     <%# --- Header --- %>
     <div class="absolute top-0 left-0 right-0 z-10">
@@ -34,32 +34,32 @@
         </div>
       </div>
     </div>
-    <%# --- Messages --- %>
+    <%# --- Posts --- %>
     <div class="relative z-0 h-full pt-16 pb-20 overflow-y-scroll">
-      <% @messages.group_by { |x| message_group(x) }.each do |date, messages| %>
+      <% @posts.group_by { |x| post_group(x) }.each do |date, posts| %>
         <div class="relative my-4 text-center">
           <div class="w-full h-[1px] bg-stone-200 absolute top-[12px]"></div>
           <span class="relative inline-block px-3 py-1 mx-auto text-xs border rounded-full bg-gray-50 border-stone-400"><%= date %></span>
         </div>
-        <% messages.each do |message| %>
-          <div class="flex px-4 mb-6 space-x-2" id="message-<%= message.id %>">
+        <% posts.each do |post| %>
+          <div class="flex px-4 mb-6 space-x-2" id="post-<%= post.id %>">
             <div class="mt-1">
-              <%= image_tag "https://i.pravatar.cc/400?img=#{message.user.id}", class: "rounded-lg h-10 w-10" %>
+              <%= image_tag "https://i.pravatar.cc/400?img=#{post.user.id}", class: "rounded-lg h-10 w-10" %>
             </div>
             <div class="relative flex-grow">
               <div class="flex items-center mb-1 space-x-2 text-sm">
-                <span class="font-bold "><%= message.user.name %></span>
-                <span class="text-stone-500"><%= message.created_at.to_fs(:time) %></span>
-                <% if message.versions.select { |v| v.event == 'update' }.size > 0 %>
+                <span class="font-bold "><%= post.user.name %></span>
+                <span class="text-stone-500"><%= post.created_at.to_fs(:time) %></span>
+                <% if post.versions.select { |v| v.event == 'update' }.size > 0 %>
                   <span class="px-1 py-[2px] text-xs text-blue-400 uppercase bg-blue-100 border border-blue-200 rounded-sm">Edited</span>
                 <% end %>
               </div>
               <div class="flex-grow">
-                <%= message.body %>
+                <%= post.body %>
               </div>
-              <% if message.user == current_user %>
+              <% if post.user == current_user %>
                 <div class="absolute top-2 right-4">
-                  <%= link_to 'Edit', edit_channel_message_path(@channel, message), class: 'text-xs p-2 border border-stone-300 text-stone-500 uppercase no-underline rounded-md hover:text-pink-500 hover:border-pink-500 duration-300 transition-colors' %>
+                  <%= link_to 'Edit', edit_channel_post_path(@channel, post), class: 'text-xs p-2 border border-stone-300 text-stone-500 uppercase no-underline rounded-md hover:text-pink-500 hover:border-pink-500 duration-300 transition-colors' %>
                 </div>
               <% end %>
             </div>
@@ -67,17 +67,17 @@
         <% end %>
       <% end %>
     </div>
-    <%# --- New Message Form --- %>
+    <%# --- New Post Form --- %>
     <div class="absolute bottom-0 left-0 right-0 z-10 bg-white border-t border-stone-300">
-      <%= simple_form_for [@channel, @message], html: { class: 'relative'} do |f| %>
-        <%= f.input :body, label: false, placeholder: 'New message ...' %>
+      <%= simple_form_for [@channel, @post], html: { class: 'relative'} do |f| %>
+        <%= f.input :body, label: false, placeholder: 'New post ...' %>
         <%= f.submit 'Send', class: 'bg-blue-500 absolute right-4 top-3 text-sm text-white rounded-md py-2 px-4' %>
       <% end %>
     </div>
   </div>
 </div>
-<%# Scroll to latest message %>
+<%# Scroll to latest post %>
 <script type="text/javascript">
-  var lastMessage = document.getElementById("message-<%= @messages.last.id %>");
-  lastMessage.scrollIntoView();
+  var lastPost = document.getElementById("post-<%= @posts.last.id %>");
+  lastPost.scrollIntoView();
 </script>

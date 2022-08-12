@@ -6,10 +6,10 @@ class Channel < ApplicationRecord
                     length: { maximum: 100 },
                     format: {
                       with: /\A[a-zA-Z0-9\-_]+\z/,
-                      message: 'only allows letters, numbers, dashes, and underscores'
+                      post: 'only allows letters, numbers, dashes, and underscores'
                     }
 
-  has_many :messages
+  has_many :posts
 
   default_scope { order(:title) }
 end

@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :channels, only: %i[index show] do
-    resources :messages, only: %i[create index edit update]
+    resources :posts, only: %i[create index edit update]
   end
 
-  root 'messages#home'
+  root 'posts#home'
 end

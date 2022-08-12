@@ -6,6 +6,6 @@ class ChannelsController < ApplicationController
   end
 
   def show
-    redirect_to channel_messages_path(params[:id])
+    redirect_to channel_posts_path(params[:id])
   end
 end

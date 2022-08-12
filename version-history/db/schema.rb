@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_101957) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
     t.integer "channel_id", null: false

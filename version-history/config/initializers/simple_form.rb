@@ -61,8 +61,8 @@ SimpleForm.setup do |config|
     b.use :hint,  wrap_with: { tag: :span, class: :hint }
     b.use :error, wrap_with: { tag: :span, class: 'text-sm uppercase text-red-600 font-bold' }
 
-    ## full_messages_for
-    # If you want to display the full error message for the attribute, you can
+    ## full_posts_for
+    # If you want to display the full error post for the attribute, you can
     # use the component :full_error, like:
     #
     # b.use :full_error, wrap_with: { tag: :span, class: :error }
@@ -81,7 +81,7 @@ SimpleForm.setup do |config|
   config.button_class = 'button'
 
   # Method used to tidy up errors. Specify any Rails Array method.
-  # :first lists the first message for each field.
+  # :first lists the first post for each field.
   # Use :to_sentence to list all errors for each field.
   # config.error_method = :first
 

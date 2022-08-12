@@ -4,7 +4,7 @@ def create_object(klass, attributes, _attempt = 1)
   obj = klass.new(attributes)
   obj.save!
 rescue StandardError => e
-  puts "[User ERROR] #{e.message}"
+  puts "[User ERROR] #{e.post}"
   puts obj.attributes
 end
 
@@ -28,13 +28,13 @@ channels = Channel.all
 # ---------------------------------------- | Post
 
 500.times do
-  create_object(Message, body: Faker::Hipster.sentence, user: users.sample, channel: channels.sample)
+  create_object(Post, body: Faker::Hipster.sentence, user: users.sample, channel: channels.sample)
 end
 
-PaperTrail.request.disable_model(Message)
+PaperTrail.request.disable_model(Post)
 
-Message.all.each do |message|
-  message.update!(created_at: rand(1.month).seconds.ago)
+Post.all.each do |post|
+  post.update!(created_at: rand(1.month).seconds.ago)
 end
 
-PaperTrail.request.enable_model(Message)
+PaperTrail.request.enable_model(Post)
