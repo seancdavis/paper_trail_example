@@ -232,6 +232,7 @@ GEM
     tailwindcss-rails (2.0.10-x86_64-darwin)
       railties (>= 6.0.0)
     thor (1.2.1)
+    timecop (0.9.5)
     timeout (0.3.0)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
@@ -281,6 +282,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   stimulus-rails
   tailwindcss-rails (~> 2.0)
+  timecop
   turbo-rails
   tzinfo-data
   web-console

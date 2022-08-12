@@ -78,6 +78,9 @@ group :development do
 
   # Code formatting
   gem 'rubocop'
+
+  # Seeding data
+  gem 'timecop'
 end
 
 group :test do
