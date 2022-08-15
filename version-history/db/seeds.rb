@@ -30,10 +30,14 @@ random_dates.each do |date|
   # Set the user for the post as whodunnit for the version
   user = users.sample
   PaperTrail.request.whodunnit = user.id
+  # Get an image URL
+  random_image_url = URI('https://picsum.photos/1440/600')
+  image_url = Net::HTTP.get_response(random_image_url)['location']
   # Create the post
   post = create_object(Post, title: Faker::Hipster.sentence,
                              body: Faker::Lorem.paragraphs(number: rand(2..6)).join("\n\n"),
                              published_at: Time.now + rand(10.days).seconds,
+                             image_url:,
                              user:)
   # Build a few versions for the post
   rand(1..10).times do
