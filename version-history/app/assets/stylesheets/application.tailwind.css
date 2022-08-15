@@ -28,6 +28,11 @@
       inline-block
       w-auto;
   }
+
+  svg {
+    @apply h-full
+      w-full;
+  }
 }
 
 @layer components {
