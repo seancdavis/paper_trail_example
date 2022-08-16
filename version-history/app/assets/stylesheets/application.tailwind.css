@@ -18,6 +18,7 @@
   input,
   [type='text'],
   [type='date'],
+  [type='url'],
   textarea,
   select {
     @apply border
