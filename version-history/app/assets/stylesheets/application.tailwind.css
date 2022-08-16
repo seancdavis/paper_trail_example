@@ -24,6 +24,7 @@
     @apply border
       border-stone-200
       block
+      rounded-md
       w-full;
   }
 

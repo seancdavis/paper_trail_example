@@ -4,5 +4,8 @@
   <%= f.input :user_id, collection: User.all %>
   <%= f.input :image_url %>
   <%= f.input :published_at, as: :date, html5: true %>
-  <%= f.submit 'Save Post', class: 'button' %>
+  <div class="flex items-center space-x-3">
+    <%= f.submit 'Save Post', class: 'button' %>
+    <%= link_to 'Cancel', @post %>
+  </div>
 <% end %>
