@@ -5,10 +5,9 @@ module ApplicationHelper
     %w[
       bg-stone-200
       duration-300
-      flex
       hover:bg-pink-500
       hover:text-white
-      items-center
+      leading-none
       no-underline
       p-2
       rounded-md

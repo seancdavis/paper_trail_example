@@ -2,17 +2,15 @@
   <%= link_to post, class: "relative mb-3 pb-[56.25%] block" do %>
     <%= image_tag post.image_url, class: 'absolute object-center object-fill h-full w-full' %>
   <% end %>
-  <h2 class="mb-2 text-xl font-semibold"><%= link_to post.title, post, class: 'text-inherit no-underline' %></h2>
+  <h2 class="mb-1 text-xl font-semibold"><%= link_to post.title, post, class: 'text-inherit no-underline' %></h2>
   <div class="flex items-center justify-between text-sm text-stone-500">
     <span><%= post.published_at.strftime('%b %d, %Y') %></span>
     <div class="flex items-center">
       <%= link_to edit_post_path(post), class: secondary_button_classes + ' mr-3' do %>
-        <span class="inline-block h-3 mr-1"><%= render 'shared/icons/edit' %></span>
-        <span class="text-xs uppercase">Edit</span>
+        <span class="inline-block h-3"><%= render 'shared/icons/edit' %></span>
       <% end %>
       <%= link_to post, data: {confirm: 'Are you sure?'}, method: :delete, class: secondary_button_classes do %>
-        <span class="inline-block h-3 mr-1"><%= render 'shared/icons/delete' %></span>
-        <span class="text-xs uppercase">delete</span>
+        <span class="inline-block h-3"><%= render 'shared/icons/delete' %></span>
       <% end %>
     </div>
   </div>
