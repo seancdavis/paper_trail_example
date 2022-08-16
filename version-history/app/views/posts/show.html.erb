@@ -1,8 +1,23 @@
-<div>
-  <h2><%= @post.title %></h2>
-  <div><%= @post.body %></div>
-  <hr>
-  <%= link_to 'All Posts', posts_path %>
-  <%= link_to 'Edit', edit_post_path(@post) %>
-  <%= link_to 'Delete', @post, data: {confirm: 'Are you sure?'}, method: :delete %>
+<div class="max-w-4xl px-8 py-16 mx-auto">
+  <div class="relative mb-6 pb-[40%] block">
+    <%= image_tag @post.image_url, class: 'absolute object-center object-fill h-full w-full' %>
+  </div>
+  <%# Title %>
+  <h1 class="mb-3 text-5xl font-semibold"><%= @post.title %></h1>
+  <%# Meta %>
+  <div class="flex items-center justify-between mb-6 text-sm text-stone-500">
+    <span><%= @post.published_at.strftime('%b %d, %Y') %></span>
+    <div class="flex items-center">
+      <%= link_to edit_post_path(@post), class: secondary_button_classes + ' mr-3' do %>
+        <span class="inline-block h-3 mr-1"><%= render 'shared/icons/edit' %></span>
+        <span class="text-xs uppercase">Edit</span>
+      <% end %>
+      <%= link_to @post, data: {confirm: 'Are you sure?'}, method: :delete, class: secondary_button_classes do %>
+        <span class="inline-block h-3 mr-1"><%= render 'shared/icons/delete' %></span>
+        <span class="text-xs uppercase">delete</span>
+      <% end %>
+    </div>
+  </div>
+  <%# Body %>
+  <div><%= markdown @post.body %></div>
 </div>
