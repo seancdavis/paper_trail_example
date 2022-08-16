@@ -16,9 +16,12 @@
   }
 
   input,
+  [type='text'],
+  [type='date'],
   textarea,
   select {
-    @apply border-0
+    @apply border
+      border-stone-200
       block
       w-full;
   }
@@ -33,13 +36,17 @@
     @apply h-full
       w-full;
   }
+
+  abbr {
+    @apply no-underline;
+  }
 }
 
 @layer components {
   .button {
-    @apply bg-gradient-to-tr
+    @apply bg-pink-500
       font-bold
-      hover:bg-gradient-to-br
+      hover:bg-pink-600
       hover:cursor-pointer
       inline-block
       leading-none
@@ -47,39 +54,8 @@
       px-6
       py-3
       rounded-md
-      text-xs
-      uppercase
-    from-orange-500
-    text-white
-    to-pink-600;
-  }
-
-  .button-alt {
-    @apply border
-      border-white
-      bg-transparent
-      duration-500
-      font-bold
-      hover:bg-white
-      hover:cursor-pointer
-      hover:text-orange-500
-      inline-block
-      leading-none
-      no-underline
-      px-6
-      py-3
-      rounded-md
-      text-xs
       text-white
-      transition-colors
+      text-xs
       uppercase;
-  }
-
-  /* ----- Basic Page ---- */
-
-  .basic-page-content h1 {
-    @apply leading-snug
-      mb-6
-      text-center;
   }
 }

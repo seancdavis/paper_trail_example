@@ -48,33 +48,4 @@
     text-white
     to-pink-600;
   }
-
-  .button-alt {
-    @apply border
-      border-white
-      bg-transparent
-      duration-500
-      font-bold
-      hover:bg-white
-      hover:cursor-pointer
-      hover:text-orange-500
-      inline-block
-      leading-none
-      no-underline
-      px-6
-      py-3
-      rounded-md
-      text-xs
-      text-white
-      transition-colors
-      uppercase;
-  }
-
-  /* ----- Basic Page ---- */
-
-  .basic-page-content h1 {
-    @apply leading-snug
-      mb-6
-      text-center;
-  }
 }
