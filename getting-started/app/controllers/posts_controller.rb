@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_paper_trail_whodunnit, except: %i[index show]
   before_action :set_post, only: %i[show edit update destroy]
 
   # GET /posts or /posts.json
