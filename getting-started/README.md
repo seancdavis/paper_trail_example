@@ -45,14 +45,13 @@ And then you can explore versioning through PaperTrail.
 post.versions
 
 # =>
-# [#<PaperTrail::Version:0x0000000111a025c8
-#   id: 2,
+# [#<PaperTrail::Version:...
+#   id: ...,
 #   item_type: "Post",
-#   item_id: 3,
+#   item_id: ...,
 #   event: "create",
 #   whodunnit: nil,
 #   object: nil,
-#   created_at: Thu, 18 Aug 2022 10:29:43.258974000 UTC +00:00,
-#   object_changes:
-#     "---\nid:\n-\n- 3\ntitle:\n-\n- Hello World\nbody:\n-\n- Lorem ipsum ...\ncreated_at:\n-\n- !ruby/object:ActiveSupport::TimeWithZone\n  utc: &1 2022-08-18 10:29:43.258974000 Z\n  zone: &2 !ruby/object:ActiveSupport::TimeZone\n    name: Etc/UTC\n  time: 2022-08-18 10:29:43.258974000 Z\nupdated_at:\n-\n- !ruby/object:ActiveSupport::TimeWithZone\n  utc: *1\n  zone: *2\n  time: 2022-08-18 10:29:43.258974000 Z\n">]
+#   created_at: ...,
+#   object_changes: "...">]
 ```
